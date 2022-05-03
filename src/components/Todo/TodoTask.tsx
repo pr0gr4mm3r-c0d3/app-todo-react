@@ -1,11 +1,9 @@
 import { FaCheck, FaEdit, FaMinus, FaTrash } from 'react-icons/fa';
-import { useTodos } from '../../hooks/useTodos/useTodos';
+import { useTodos } from 'src/hooks';
 import { ITodo } from 'src/interfaces';
 type Props = {
 	task: ITodo;
 };
-
-type State = {};
 
 export const TodoTask = ({
 	task: { id, title, description, completed },
@@ -47,9 +45,16 @@ export const TodoTask = ({
 							<button className='rounded p-4 bg-green-500'>
 								<FaEdit />
 							</button>
+
+							<label
+								htmlFor='modal-delete'
+								className='rounded p-4 bg-red-500  modal-button cursor-pointer'
+							>
+								<FaTrash />
+							</label>
 							<button
 								onClick={deleteHandler}
-								className='rounded p-4 bg-red-500'
+								className='rounded p-4 bg-red-500  modal-button'
 							>
 								<FaTrash />
 							</button>

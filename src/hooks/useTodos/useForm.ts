@@ -3,8 +3,8 @@ import { useTodos } from '../useTodos/useTodos';
 import { ITodo } from 'src/interfaces';
 const INITIAL_NEW_TODO: ITodo = {
 	id: new Date().getTime(),
-	title: 'Title',
-	description: 'Description',
+	title: '',
+	description: '',
 	completed: false,
 };
 

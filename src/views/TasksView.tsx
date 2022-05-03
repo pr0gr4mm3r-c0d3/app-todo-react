@@ -1,5 +1,5 @@
-import { useTodos } from '../hooks';
-import { TodoTask } from '../components';
+import { useTodos } from 'src/hooks';
+import { ModalDelete, TodoTask } from 'src/components';
 
 export const TasksView = () => {
 	const { todos } = useTodos();
@@ -9,6 +9,8 @@ export const TasksView = () => {
 			{todos.map((todo) => (
 				<TodoTask key={todo.id} task={todo} />
 			))}
+
+			<ModalDelete />
 		</section>
 	);
 };
