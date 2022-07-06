@@ -3,14 +3,18 @@ import { useTodos } from 'src/hooks';
 import { ITodo } from 'src/interfaces';
 type Props = {
 	task: ITodo;
+	getIdToDeleteTask: (id: number) => void;
 };
 
 export const TodoTask = ({
 	task: { id, title, description, completed },
+	getIdToDeleteTask,
 }: Props) => {
 	const { deleteTodo, toggleTodo } = useTodos();
 	const setComplete = () => toggleTodo(id);
 	const deleteHandler = () => deleteTodo(id);
+
+	const sendTaskID = () => getIdToDeleteTask(id);
 
 	return (
 		<>
@@ -48,16 +52,11 @@ export const TodoTask = ({
 
 							<label
 								htmlFor='modal-delete'
+								onClick={sendTaskID}
 								className='rounded p-4 bg-red-500  modal-button cursor-pointer'
 							>
 								<FaTrash />
 							</label>
-							<button
-								onClick={deleteHandler}
-								className='rounded p-4 bg-red-500  modal-button'
-							>
-								<FaTrash />
-							</button>
 						</div>
 					</div>
 				</div>

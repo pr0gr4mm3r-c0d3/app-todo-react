@@ -1,6 +1,8 @@
 import { useTodos } from 'src/hooks';
 
-type Props = { id?: number };
+type Props = {
+	id?: number;
+};
 
 export const ModalDelete = ({ id }: Props) => {
 	const { deleteTodo } = useTodos();
@@ -21,12 +23,13 @@ export const ModalDelete = ({ id }: Props) => {
 							>
 								Cancel
 							</label>
-							<button
+							<label
+								htmlFor='modal-delete'
 								onClick={deleteHandler}
 								className='btn bg-red-500'
 							>
 								Delete
-							</button>
+							</label>
 						</div>
 					</div>
 				</div>
