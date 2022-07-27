@@ -5,8 +5,5 @@ export interface ITodo {
 	completed: boolean;
 }
 export interface ITodoState {
-	completed: number;
 	todos: ITodo[];
-	todoCount: number;
-	pending: number;
 }

@@ -1,3 +1,4 @@
+import { focusInInput } from './../../utils/FocusInInput';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useTodos } from '../useTodos/useTodos';
 import { ITodo } from 'src/interfaces';
@@ -11,17 +12,20 @@ const INITIAL_NEW_TODO: ITodo = {
 type FormElement = HTMLInputElement | HTMLTextAreaElement;
 
 export const useForm = () => {
-	const { addTodo } = useTodos();
+	const { todos, addTodo, editTodo } = useTodos();
 
 	const [newTodo, setNewTodo] = useState<ITodo>({
 		...INITIAL_NEW_TODO,
 		id: new Date().getTime(),
 	});
 
-	const resetNewTodo = () => {
+	const resetNewTodo = () =>
 		setNewTodo({ ...INITIAL_NEW_TODO, id: new Date().getTime() });
-	};
 
+	const loadTodoInForm = (taskId: number) => {
+		const task = todos.find(({ id }) => id === taskId);
+		task && setNewTodo(task);
+	};
 	const changeInputHandler = (e: ChangeEvent<FormElement>) => {
 		const { name, value } = e.target;
 		setNewTodo({
@@ -35,8 +39,15 @@ export const useForm = () => {
 		console.log(e);
 		const { title, description } = newTodo;
 		if (title && description) {
-			addTodo(newTodo);
+			const task = todos.find(({ id }) => id === newTodo.id);
+			if (task) {
+				editTodo(newTodo);
+				document.getElementById('btn__close')?.click();
+			} else {
+				addTodo(newTodo);
+			}
 			resetNewTodo();
+			focusInInput();
 		} else {
 			console.error('Campos Vacios');
 		}
@@ -46,5 +57,8 @@ export const useForm = () => {
 		newTodo,
 		addTaskHandler,
 		changeInputHandler,
+		resetNewTodo,
+		loadTodoInForm,
+		resetNewTodo,
 	};
 };

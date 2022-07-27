@@ -1,4 +1,4 @@
-import { ITodo, ITodoState } from './../../interfaces/';
+import { ITodo, ITodoState } from '../../interfaces';
 
 type TodoAction =
 	| { type: 'ADD_TODO'; payload: ITodo }

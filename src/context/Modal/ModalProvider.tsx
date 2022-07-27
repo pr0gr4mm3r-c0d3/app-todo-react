@@ -1,9 +1,10 @@
 import { useReducer } from 'react';
 import { ITodo, ITodoState } from '../../interfaces';
-import { TodoContext } from './TodoContext';
-import { todoReducer } from './TodoReducer';
+import { TodoContext } from './ModalContext';
+import { todoReducer } from './ModalReducer';
 
 const INITIAL_STATE: ITodoState = {
+	todoCount: 2,
 	todos: [
 		{
 			id: 0,
@@ -18,6 +19,8 @@ const INITIAL_STATE: ITodoState = {
 			completed: false,
 		},
 	],
+	completed: 0,
+	pending: 2,
 };
 
 type Props = {

@@ -1,4 +1,5 @@
 import { useTodos } from 'src/hooks';
+import { BtnCancelModal } from '../modal/BtnCancelModal';
 
 type Props = {
 	id?: number;
@@ -10,28 +11,17 @@ export const ModalDelete = ({ id }: Props) => {
 
 	return (
 		<>
-			<input type='checkbox' id='modal-delete' className='modal-toggle' />
-			<div className='modal'>
-				<div className='modal-box'>
-					<h3 className='font-bold text-4xl'>Delete Task</h3>
-					<div className='my-8'>
-						<h4>Are you sure ????</h4>
-						<div className='modal-action justify-between'>
-							<label
-								htmlFor='modal-delete'
-								className='btn btn-accent'
-							>
-								Cancel
-							</label>
-							<label
-								htmlFor='modal-delete'
-								onClick={deleteHandler}
-								className='btn bg-red-500'
-							>
-								Delete
-							</label>
-						</div>
-					</div>
+			<div className='py-8'>
+				<h4>Are you sure ????</h4>
+				<div className='modal-action justify-between'>
+					<BtnCancelModal />
+					<label
+						htmlFor='modal'
+						onClick={deleteHandler}
+						className='btn modal-button btn-error '
+					>
+						Delete
+					</label>
 				</div>
 			</div>
 		</>
